@@ -1,0 +1,445 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #efe9dc;
+}
+
+.loader {
+  background: linear-gradient(
+    120deg,
+    #efe9dcfc 30%,
+    #efe9dc 38%,
+    #efe9dc 40%,
+    #e5e5e5 48%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: load89234 2s infinite;
+}
+
+@keyframes load89234 {
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.spinner {
+  --size: 30px;
+  --first-block-clr: #005bba;
+  --second-block-clr: #fed500;
+  --clr: #111;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.spinner::after,
+.spinner::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  width: var(--size);
+  height: var(--size);
+  top: 50%;
+  animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+  left: 50%;
+  background: var(--first-block-clr);
+}
+
+.spinner::after {
+  background: var(--second-block-clr);
+  top: calc(50% - var(--size));
+  left: calc(50% - var(--size));
+  animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+@keyframes down {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  25% {
+    transform: translateX(100%);
+  }
+
+  50% {
+    transform: translateX(100%) translateY(100%);
+  }
+
+  75% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes up {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  25% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(-100%);
+  }
+
+  75% {
+    transform: translateY(-100%);
+  }
+}
+
+/* Card */
+.see-more-container > span {
+  transition: transform 0.3s ease-in-out;
+}
+
+.see-more-container:hover > span {
+  transform: translateX(2px);
+}
+
+.hover-underline-animation {
+  position: relative;
+  /* padding-bottom: 20px; */
+  /* transition: transform 0.5s ease-out; */
+}
+
+/* .blog_container:hover .hover-underline-animation {
+  transform: ;
+  font-style: italic;
+  transform-origin: bottom left;
+}  */
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: red;
+  transform-origin: bottom right;
+  transition: transform 0.35s ease-out;
+}
+
+.blog_container:hover .hover-underline-animation::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.main-index-container-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-rows: minmax(500px, 1fr); */
+  gap: 20px;
+}
+
+@media (min-width: 720px) {
+  .main-index-container-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    /* grid-template-rows: minmax(500px, 1fr); */
+    gap: 20px;
+  }
+}
+
+/* HAMBURGER MENU */
+#checkbox {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  transition-duration: 0.5s;
+}
+
+.bars {
+  width: 70%;
+  height: 3px;
+  background-color: black;
+  border-radius: 2px;
+}
+
+#bar2 {
+  transition-duration: 0.8s;
+}
+
+#bar1,
+#bar3 {
+  width: 90%;
+}
+
+#checkbox:checked + .toggle .bars {
+  position: absolute;
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle #bar2 {
+  transform: scaleX(0);
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle #bar1 {
+  width: 100%;
+  transform: rotate(45deg);
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle #bar3 {
+  width: 100%;
+  transform: rotate(-45deg);
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle {
+  transition-duration: 0.5s;
+  transform: rotate(180deg);
+}
+
+/* NEWSLIST LAYOUT */
+@media (min-width: 760px) {
+  .layout {
+    /* width: 1366px;
+      height: 768px; */
+
+    display: grid;
+    /* grid-template-rows: repeat(auto-fit, 100vh); */
+    /* grid-template-rows: repeat(4, 900px); */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    grid-auto-flow: row dense;
+  }
+
+  /* .layout > div {
+      height: 900px;
+    } */
+
+  .colSpan2 {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    /* width: 1366px;
+      height: 768px; */
+
+    display: grid;
+    /* grid-template-rows: repeat(auto-fit, 100vh); */
+    /* grid-template-rows: repeat(4, 900px); */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    grid-auto-flow: row dense;
+  }
+
+  /* .layout > div {
+      height: 900px;
+    } */
+
+  .colSpan2 {
+    grid-column: span 2;
+  }
+}
+
+/* SUBSCRIBE STYLES */
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  min-height: 50px;
+  /* width: 350px; */
+  padding: 0 1rem;
+  color: #000;
+  font-size: 15px;
+  border: 1px solid #dd3418;
+  border-radius: 6px 0 0 6px;
+  background-color: transparent;
+}
+
+.button--submit {
+  min-height: 50px;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  background-color: #dd3418;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button--submit:hover {
+  background-color: #fa492a;
+}
+
+.input:focus,
+.input:focus-visible {
+  border-color: #3898ec;
+  outline: none;
+}
+
+.input-group > input::placeholder {
+  color: #dd3418;
+}
+
+.fancy-link {
+  display: inline;
+  background-image: linear-gradient(0deg, black, black);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 300ms ease;
+}
+
+.fancy-link:hover {
+  background-size: 100% 2px;
+}
+
+.linkAnchor {
+  /* font-size: 3em; */
+  /* font-weight: bold; */
+  text-decoration: none;
+  /* font-family: sans-serif; */
+  /* color: #333; */
+}
+
+.underlineSpan {
+  /* I don't know why this is needed, I just added it and it worked in IE Edge. If we remove this width, the gradient breaks in IE Edge */
+  /* width: calc(100%); */
+  /* background-image: linear-gradient(transparent calc(100% - 10px), black 10px); */
+  background-image: linear-gradient(0deg, black, black);
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: left bottom;
+  transition: background-size 300ms ease;
+}
+
+.linkAnchor:hover .underlineSpan {
+  background-size: 100% 2px;
+}
+
+.animate_sidebar {
+  animation: slideIn 200ms ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    display: none;
+  }
+  to {
+    transform: translateX(0);
+    display: block;
+  }
+}
+
+.btn-animate {
+  position: relative;
+  background-color: transparent;
+}
+
+.btn-animate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #849493;
+  transform: scaleX(0);
+  transform-origin: 0;
+  transition: transform 150ms ease-in-out;
+}
+
+.btn-animate {
+  padding-left: 3px;
+  transition: all 150ms ease-in-out;
+  z-index: 1;
+}
+
+.btn-animate:hover::before,
+.btn-animate:focus::before {
+  transform: scaleX(1);
+}
+
+.btn-animate:hover,
+.btn-animate:focus {
+  color: white;
+}
+
+.animate-enter {
+  animation-name: enter;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-duration: 300ms;
+  transform-origin: 0;
+  position: relative;
+}
+
+@keyframes enter {
+  from {
+    transform: translateY(100);
+    opacity: 0.5;
+    left: -10px;
+  }
+
+  to {
+    transform: translateY(0);
+    left: 0px;
+    opacity: 1;
+  }
+}
+
+/* BUTTON LOADER ANIMATION */
+.loaders {
+  border: 4px solid rgba(0, 0, 0, 1);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.loaders {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  width: 36px;
+  height: 36px;
+}
+
+.loaders {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  width: 16px;
+  height: 16px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
